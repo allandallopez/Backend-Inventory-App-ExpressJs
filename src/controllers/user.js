@@ -17,7 +17,7 @@ exports.notFound = function(req, res) {
 exports.login = function(req, res) {
 	const email = req.body.email;
 	const password = req.body.password;
-	connection.query('SELECT * FROM users WHERE email = ?', [ email ], function(errors, results, fields) {
+	connection.query('SELECT * FROM users WHERE email = ?', email, function(errors, results, fields) {
 		if (errors) {
 			res.send({
 				code: 400,

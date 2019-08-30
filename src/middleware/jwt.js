@@ -32,6 +32,10 @@ function verifyToken(req, res, next) {
 			});
 		}
 	} else {
-		res.sendStatus(403);
+		res.status(403).json({
+			status: 403,
+			error: true,
+			message: 'You dont insert any token'
+		});
 	}
 }

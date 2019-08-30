@@ -21,7 +21,7 @@ exports.Products = function(req, res) {
 exports.getAllProducts = function(req, res) {
 	var sort = req.query.sort || 'ASC';
 	var sortBy = req.params.sortBy || 'id';
-	var limit = req.query.limit || 5;
+	var limit = req.query.limit || 3;
 	var page = (req.query.page - 1) * limit || 0;
 	const search = `%${req.query.search}%`;
 	var query =
@@ -89,11 +89,18 @@ exports.findProducts = function(req, res) {
 };
 
 exports.createProducts = function(req, res) {
-	const { name, description, image, id_category, quantity, date_added, date_update } = req.body;
+	const { name, description, image, id_category, quantity } = req.body;
+	const date = new Date()
 
-	connection.query(
+	if (!name || !description || !image || !id_category || !quantity) {
+		res.status(300).json({
+			status: 300,
+			error: true,
+			message: 'The values cant be null!'
+		});
+	} else {connection.query(
 		'INSERT INTO products (name, description, image, id_category, quantity, date_added, date_update) values (?, ?, ?, ?, ?, ?, ?)',
-		[ name, description, image, id_category, quantity, date_added, date_update ],
+		[ name, description, image, id_category, quantity, date , date ],
 		function(err, results) {
 			if (err) {
 				console.log(err);
@@ -111,16 +118,13 @@ exports.createProducts = function(req, res) {
 			}
 		}
 	);
+	}
 };
 
-exports.updateProducts = function(req, res) {
-	const { name, description, image, id_category, quantity, date_added, date_updated } = req.body;
 
-	console.log(name);
-	console.log(description);
-	console.log(image);
-	console.log(id_category);
-	console.log(quantity);
+
+exports.updateProducts = function(req, res) {
+	const { name, description, image, id_category, quantity, date } = req.body;
 
 	if (!name || !description || !image || !id_category || !quantity) {
 		res.status(300).json({
@@ -130,8 +134,8 @@ exports.updateProducts = function(req, res) {
 		});
 	} else {
 		connection.query(
-			'UPDATE products SET name = ?, description = ?, image = ?, id_category = ?, quantity = ?, date_added = ?, date_update = ? where id = ?',
-			[ name, description, image, id_category, quantity, date_added, date_updated, req.params.id ],
+			'UPDATE products SET name = ?, description = ?, image = ?, id_category = ?, quantity = ?, date_update = ? where id = ?',
+			[ name, description, image, id_category, quantity, date, req.params.id ],
 			function(err, results) {
 				if (err) {
 					console.log(err);
@@ -163,7 +167,7 @@ exports.deleteProducts = function(req, res) {
 				res.status(400).json({
 					status: 400,
 					error: true,
-					message: 'Cannot delete product data with id: ' + req.params.id
+					message: 'Data with ID : ' + req.params.id + 'Not Founds'
 				});
 			}
 		}
