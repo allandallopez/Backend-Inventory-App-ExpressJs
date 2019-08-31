@@ -1,4 +1,4 @@
-# RESTful API Computer Inventory App
+# RESTful API Inventory App
 
 ![](https://img.shields.io/badge/Code%20Style-Standard-yellow.svg)
 ![](https://img.shields.io/badge/Dependencies-Express-green.svg)
