@@ -18,7 +18,7 @@
 * [Documentation](#documentation)
 * [License](#license)
 
-## Prerequiste
+## Prerequisite
 - Node.js - Download and Install [Node.js](https://nodejs.org/en/) with [NVM](https://github.com/creationix/nvm) (Node Version Manager) - Simple bash script to manage multiple active node.js versions.
 - MySQL - Download and Install [MySQL](https://www.mysql.com/downloads/) - is a free and open-source cross-platform web server solution stack package developed by Apache Friends, consisting mainly of the Apache HTTP Server, MariaDB database, and interpreters for scripts written in the PHP and Perl programming languages. Since most actual web server deployments use the same components as XAMPP, it makes transitioning from a local test server to a live server possible.
 - Postman - Download and Install [Postman](https://www.getpostman.com/downloads) - Implementation with postman latest version.
