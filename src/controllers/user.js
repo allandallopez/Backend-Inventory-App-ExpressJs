@@ -77,8 +77,8 @@ exports.register = function(req, res) {
 							message: 'Error add new users!'
 						});
 					} else {
-						res.status(200).json({
-							status: 200,
+						res.status(201).json({
+							status: 201,
 							error: false,
 							message: 'Successfull user registered, Pls Login!',
 							data: req.body
