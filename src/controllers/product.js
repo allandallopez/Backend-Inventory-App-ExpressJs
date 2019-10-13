@@ -109,8 +109,8 @@ exports.createProducts = function(req, res) {
 					message: 'Error add new data!'
 				});
 			} else {
-				res.status(200).json({
-					status: 200,
+				res.status(201).json({
+					status: 201,
 					error: false,
 					message: 'Successfully add new product data!',
 					data: req.body
